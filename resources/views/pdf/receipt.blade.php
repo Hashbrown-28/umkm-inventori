@@ -127,24 +127,28 @@
         </tbody>
     </table>
 
-    <div class="total">
+    <div class="totals">
         <table>
-            <tr>
-                <td width="70%"><strong class="grand-total">TOTAL:</strong></td>
-                <td class="text-right"><strong class="grand-total">Rp {{ number_format($sale->total_amount, 0, ',', '.') }}</strong></td>
+            <tr class="grand-total bold">
+                <td>TOTAL</td>
+                <td class="text-right text-xl">Rp {{ number_format($sale->total_amount, 0, ',', '.') }}</td>
             </tr>
         </table>
     </div>
 
     @if($sale->notes)
-        <div style="margin-top: 15px; padding: 10px; background-color: #f9f9f9;">
-            <strong>Catatan:</strong> {{ $sale->notes }}
+        <div style="font-size: 9px; margin-bottom: 5mm;">
+            <p class="bold" style="margin-bottom: 1mm;">Catatan:</p>
+            <p>{{ $sale->notes }}</p>
         </div>
     @endif
 
-    <div class="footer">
-        <p>Terima kasih atas kunjungan Anda!</p>
-        <p>Barang yang sudah dibeli tidak dapat dikembalikan</p>
+    <div class="footer text-center">
+        <p class="bold">TERIMA KASIH</p>
+        <p>Atas Kunjungan Anda</p>
+        <p>Layanan Pelanggan: 0812-XXXX-XXXX</p>
+        <div class="dashed-line"></div>
+        <p>{{ now()->format('d/m/Y H:i:s') }}</p>
     </div>
 </body>
 </html>

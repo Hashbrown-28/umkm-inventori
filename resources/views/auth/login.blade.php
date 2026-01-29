@@ -49,6 +49,9 @@
             <div class="relative z-10 w-full h-full flex flex-col justify-between p-12 text-white">
                 <!-- Brand -->
                 <div class="flex items-center space-x-3">
+                    <div class="text-1 font-bold tracking-tight bg-gray-50">
+
+                    </div>
                     <div>
                         <h1 class="text-xl font-bold tracking-tight">UMKM Management</h1>
                         <p class="text-xs text-blue-200">Sistem Manajemen Inventori dan Penjualan</p>

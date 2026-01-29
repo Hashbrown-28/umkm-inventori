@@ -76,6 +76,26 @@ Route::get('/debug-logs', function () {
     return response(implode("\n", $lastLines), 200, ['Content-Type' => 'text/plain']);
 });
 
+Route::get('/debug-error', function () {
+    config(['app.debug' => true]);
+    return 'Debug mode temporarily enabled (for this request). Please go to the page that is crashing and refresh it. It should now show the real error message.';
+});
+
+Route::get('/pos-debug', function () {
+    try {
+        config(['app.debug' => true]);
+        $controller = new \App\Http\Controllers\POSController();
+        return $controller->index();
+    } catch (\Throwable $e) {
+        return response()->json([
+            'message' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine(),
+            'trace' => explode("\n", $e->getTraceAsString())
+        ]);
+    }
+});
+
 Route::middleware(['auth', 'verified'])->group(function () {
     // Dashboard - accessible by all authenticated users
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -64,6 +64,18 @@ Route::get('/reset-admin', function () {
     }
 });
 
+Route::get('/debug-logs', function () {
+    $logPath = storage_path('logs/laravel.log');
+    if (!file_exists($logPath)) {
+        return 'Log file not found at ' . $logPath;
+    }
+    $logs = file_get_contents($logPath);
+    // Return last 100 lines
+    $lines = explode("\n", $logs);
+    $lastLines = array_slice($lines, -100);
+    return response(implode("\n", $lastLines), 200, ['Content-Type' => 'text/plain']);
+});
+
 Route::middleware(['auth', 'verified'])->group(function () {
     // Dashboard - accessible by all authenticated users
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
